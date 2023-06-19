@@ -42,14 +42,16 @@ const PokemonDetail = () => {
                   <Card.Body>
                     <Card.Title>{data.name}</Card.Title>
                     <Card.Text>
-                      <ul className='list-group'>
-                        <li className='list-group-item border-0'>hp: {data.stats[0].base_stat}</li>
-                        <li className='list-group-item border-0'>attack: {data.stats[1].base_stat}</li>
-                        <li className='list-group-item border-0'>defense: {data.stats[2].base_stat}</li>
-                        <li className='list-group-item border-0'>special-attack: {data.stats[3].base_stat}</li>
-                        <li className='list-group-item border-0'>special-defense: {data.stats[4].base_stat}</li>
-                        <li className='list-group-item border-0'>speed: {data.stats[5].base_stat}</li>
-                      </ul>
+                      <div>
+                        <ul className='list-group'>
+                          <li className='list-group-item border-0'>hp: {data.stats[0].base_stat}</li>
+                          <li className='list-group-item border-0'>attack: {data.stats[1].base_stat}</li>
+                          <li className='list-group-item border-0'>defense: {data.stats[2].base_stat}</li>
+                          <li className='list-group-item border-0'>special-attack: {data.stats[3].base_stat}</li>
+                          <li className='list-group-item border-0'>special-defense: {data.stats[4].base_stat}</li>
+                          <li className='list-group-item border-0'>speed: {data.stats[5].base_stat}</li>
+                        </ul>
+                      </div>
                     </Card.Text>
                   </Card.Body>
                 </Col>
