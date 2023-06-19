@@ -3,13 +3,27 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 import { Container, Row, Col, Spinner, Card, Button } from 'react-bootstrap';
 
-const PokemonDetail = () => {
+const PokemonDetails = () => {
   const { name } = useParams();
-  const navigate = useNavigate();
 
   const { data, loading, error } = useFetch(
     `https://pokeapi.co/api/v2/pokemon/${name}/`
   );
+  const navigate = useNavigate();
+  const { sprites } = data;
+  const imageUrl = sprites?.other.dream_world.front_default;
+
+  const renderStats = (data) => {
+    return (
+      <ul className='list-group'>
+        {data.stats.map((stat) => (
+          <li key={stat.stat.name} className='list-group-item border-0'>
+            {`${stat.stat.name}: ${stat.base_stat}`}
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
     <Container fluid>
@@ -31,7 +45,7 @@ const PokemonDetail = () => {
                 <Col xs={6}>
                   <Card.Img
                     variant='top'
-                    src={data.sprites?.other.dream_world.front_default}
+                    src={imageUrl}
                     alt={data.name}
                     width={200}
                     height={200}
@@ -41,18 +55,7 @@ const PokemonDetail = () => {
                 <Col xs={6}>
                   <Card.Body>
                     <Card.Title>{data.name}</Card.Title>
-                    <Card.Text>
-                      <div>
-                        <ul className='list-group'>
-                          <li className='list-group-item border-0'>hp: {data.stats[0].base_stat}</li>
-                          <li className='list-group-item border-0'>attack: {data.stats[1].base_stat}</li>
-                          <li className='list-group-item border-0'>defense: {data.stats[2].base_stat}</li>
-                          <li className='list-group-item border-0'>special-attack: {data.stats[3].base_stat}</li>
-                          <li className='list-group-item border-0'>special-defense: {data.stats[4].base_stat}</li>
-                          <li className='list-group-item border-0'>speed: {data.stats[5].base_stat}</li>
-                        </ul>
-                      </div>
-                    </Card.Text>
+                    <div>{renderStats(data)}</div>
                   </Card.Body>
                 </Col>
               </Row>
@@ -77,4 +80,4 @@ const PokemonDetail = () => {
   );
 };
 
-export default PokemonDetail;
+export default PokemonDetails;

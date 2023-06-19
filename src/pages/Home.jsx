@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-const home = () => {
+const Home = () => {
   return (
     <Container fluid>
       <Row>
@@ -19,4 +19,4 @@ const home = () => {
   );
 }
 
-export default home;
+export default Home;
